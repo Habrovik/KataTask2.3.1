@@ -22,9 +22,10 @@ import java.util.Properties;
 @ComponentScan("web")
 public class HibernateConfig {
 
-    @Autowired
+
     private Environment env;
 
+    @Autowired
     public HibernateConfig(Environment env) {
         this.env = env;
     }

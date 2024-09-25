@@ -26,20 +26,18 @@ public class UserController {
     public String getUsers(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
-        return "user-list";
+        return "users";
     }
-
-
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user){
-        return "user-create";
+        return "create";
     }
 
     @PostMapping
     public String createUser(@ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            return "user-create";
+            return "create";
         }
         else {
             userService.save(user);
@@ -53,7 +51,7 @@ public class UserController {
 
         if (userById.isPresent()) {
             model.addAttribute("user", userById.get());
-            return "user-edit";
+            return "edit";
         } else {
             return "redirect:/users";
         }
